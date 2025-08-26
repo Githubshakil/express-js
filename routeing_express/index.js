@@ -9,13 +9,13 @@ app.get("/", (req, res) => {
   res.send("well come to my server 2.0");
 });
 
-// get request
+// get request: get information
 
 app.get("/about", (req, res) => {
   res.send("This is a About Page");
 });
 
-// post request
+// post request: create a new post
 
 app.post("/contact", (req, res) => {
   // console.log("posting contact details");
@@ -24,7 +24,7 @@ app.post("/contact", (req, res) => {
   res.send("massage recived");
 });
 
-// put request
+// put request: edit or update information
 
 app.put("/edit-post/:id", (req, res) => {
   console.log("editing post by put request method");
@@ -32,13 +32,21 @@ app.put("/edit-post/:id", (req, res) => {
   
 })
 
-// patch request
+// patch request: edit or update information
 
 app.patch("/edit-post/:id", (req, res) => {
   console.log("editing post by patch request method");
   res.send("editing sucessful")
 })
 
+// delete request:
+
+app.delete("/comments/:id", (req, res)=>{
+  // console.log(req.params.id)
+  const commentId =req.params.id
+  console.log("Deleting comments using delete request method")
+  res.send(`Deleted comment of ${commentId} sucessful`)
+})
 
 
 
