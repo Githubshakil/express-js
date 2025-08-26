@@ -23,6 +23,30 @@ app.post("/contact", (req, res) => {
 
   res.send("massage recived");
 });
+
+// put request
+
+app.put("/edit-post/:id", (req, res) => {
+  console.log("editing post by put request method");
+  res.send("editing sucessful")
+  
+})
+
+// patch request
+
+app.patch("/edit-post/:id", (req, res) => {
+  console.log("editing post by patch request method");
+  res.send("editing sucessful")
+})
+
+
+
+
+
+
+
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
