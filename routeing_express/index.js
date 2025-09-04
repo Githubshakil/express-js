@@ -58,9 +58,9 @@ app.get("/users/:id",(req,res)=>{
 
 app.get("/search", (req,res) => {
   // console.log(req.query)
-  const {category} = req.query
+  const {category,title} = req.query
   // console.log(category)
-  res.send(`Searching for ${category} product page`)
+  res.send(`Searching for ${title} available in ${category} product page`)
 })
 
 
