@@ -48,6 +48,11 @@ app.delete("/comments/:id", (req, res)=>{
   res.send(`Deleted comment of ${commentId} sucessful`)
 })
 
+//Route parameters
+app.get("/users/:id",(req,res)=>{
+  const userId = req.params.id
+  res.send(`User id: ${userId}`)
+})
 
 
 
