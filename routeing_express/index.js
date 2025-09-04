@@ -63,6 +63,13 @@ app.get("/search", (req,res) => {
   res.send(`Searching for ${title} available in ${category} product page`)
 })
 
+//dynamic routes
+
+app.get("/posts/:id",(req, res)=>{
+  const postId = req.params.id
+  res.send(`WE are geting the post no: ${postId}`)
+})
+
 
 
 
