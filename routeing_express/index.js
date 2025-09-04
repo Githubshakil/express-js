@@ -54,6 +54,14 @@ app.get("/users/:id",(req,res)=>{
   res.send(`User id: ${userId}`)
 })
 
+// query string parameter
+
+app.get("/search", (req,res) => {
+  // console.log(req.query)
+  const {category} = req.query
+  // console.log(category)
+  res.send(`Searching for ${category} product page`)
+})
 
 
 
