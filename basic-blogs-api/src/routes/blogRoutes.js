@@ -76,22 +76,36 @@ router.get("/:id", (req, res) => {
 
   if (!existingBlog) {
     // res.send("No Blog Found");
-    res.status(404).json({massage:"Blog not found"})
+    res.status(404).json({ massage: "Blog not found" });
   }
   res.status(200).json(existingBlog);
 });
 
-
 //add a ner blog
 
-router.post('/add-post',(req,res)=>{
-  const {title, description } = req.body
-  const newBlog = {id: blogs.length +1, title, description}
-  blogs.push(newBlog)
+router.post("/add-post", (req, res) => {
+  const { title, description } = req.body;
+  const newBlog = { id: blogs.length + 1, title, description };
+  blogs.push(newBlog);
   res.status(200).json({
-    massage: 'New post Added',
-    blog: newBlog
-  })
-})
+    massage: "New post Added",
+    blog: newBlog,
+  });
+});
+
+//update a blog by id
+
+router.put("/update/:id", (req, res) => {
+  const { id } = req.params;
+  const { title, description, author } = req.body;
+  const blog = blogs.find((blog) => blog.id === parseInt(id));
+  if (!blog) return res.status(404).json({ massage: "blog not found" });
+  blog.title = title || blog.title;
+  blog.description = description || blog.description;
+  blog.author = author || blog.author;
+  res.status(200).json({
+    massage: "Blog update sucessfully",
+  });
+});
 
 module.exports = router;
