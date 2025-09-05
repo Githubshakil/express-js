@@ -108,4 +108,16 @@ router.put("/update/:id", (req, res) => {
   });
 });
 
+//delete blog by id
+
+router.delete('/delete-post/:id', (req,res)=>{
+  const {id} =req.params
+  const blogIndex = blogs.findIndex((blog)=>blog.id===parseInt(id))
+  if(blogIndex === -1) return res.status(404).json({massage:'blog not found'})
+
+    blogs.splice(blogIndex, 1)
+    res.status(200).json({massage:'blog deleted sucessfully'})
+  
+})
+
 module.exports = router;
