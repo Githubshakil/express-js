@@ -15,6 +15,13 @@ app.get("/about", (req, res) => {
   res.send("This is a About Page");
 });
 
+
+//routes here
+const blogRoutes = require('./src/routes/postRoutes.js')
+const userRoutes = require('./src/routes/userRoutes.js')
+app.use("/blogs", blogRoutes)
+app.use("/users",userRoutes )
+
 // post request: create a new post
 
 app.post("/contact", (req, res) => {
@@ -26,18 +33,7 @@ app.post("/contact", (req, res) => {
 
 // put request: edit or update information
 
-app.put("/edit-post/:id", (req, res) => {
-  console.log("editing post by put request method");
-  res.send("editing sucessful")
-  
-})
 
-// patch request: edit or update information
-
-app.patch("/edit-post/:id", (req, res) => {
-  console.log("editing post by patch request method");
-  res.send("editing sucessful")
-})
 
 // delete request:
 
@@ -49,10 +45,7 @@ app.delete("/comments/:id", (req, res)=>{
 })
 
 //Route parameters
-app.get("/users/:id",(req,res)=>{
-  const userId = req.params.id
-  res.send(`User id: ${userId}`)
-})
+
 
 // query string parameter
 
