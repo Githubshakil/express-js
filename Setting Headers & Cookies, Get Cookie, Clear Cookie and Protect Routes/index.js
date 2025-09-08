@@ -1,14 +1,15 @@
 const express = require("express");
-
 const app = express();
-
 const port = process.env.PORT || 3000;
-const path = require("path")
 
 app.get("/", (req, res) => {
   res.send("server is running!");
 });
 
+//set headers
+app.get('/headers', (req,res)=>{
+    res.send('header set currectly')
+})
 
 app.listen(port, () => {
   console.log(`server is running on port ${port}`);
