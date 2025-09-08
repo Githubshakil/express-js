@@ -30,6 +30,11 @@ app.get("/status", (req,res)=>{
     // res.status(200).send("ok")
 })
 
+app.get("/redirect",(req,res)=>{
+    res.redirect('/text')
+   
+})
+
 app.listen(port, ()=>{
     console.log(`server is running on port ${port}`)
 })
