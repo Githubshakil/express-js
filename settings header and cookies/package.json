@@ -1,5 +1,5 @@
 {
-  "name": "handle-request-response",
+  "name": "settings-header-and-cookies",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,6 +12,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "cookie-parser": "^1.4.7",
     "express": "^5.1.0",
     "nodemon": "^3.1.10"
   }
