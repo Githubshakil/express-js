@@ -23,12 +23,20 @@ app.get("/notfound", (req, res, next) => {
   next(new CustomError("Resource not found", 404))
 })
 
+
+
+//unauthorized access
+app.get("/unauthorized", (req, res, next) => {
+  next(new CustomError("Unauthorized access", 401))
+})
+
 app.get("/about", (req, res, next) => {
   try {
     fs.readFileSync("./abc.txt");
     res.send("About Page");
   } catch (error) {
     next(error);
+    res.send(DataTransfer.toString())
   }
 });
 
