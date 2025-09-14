@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const fs = require("fs");
 const errorHandler = require("./src/middleware/errorHandler");
+const CustomError = require("./src/utils/customError");
 const port = process.env.PORT || 3000;
 
 app.get("/", (req, res, next) => {
@@ -16,6 +17,11 @@ app.get("/", (req, res, next) => {
   const error = new Error("Home route error");
   next(error);
 });
+
+//not found file will throw error
+app.get("/notfound", (req, res, next) => {
+  next(new CustomError("Resource not found", 404))
+})
 
 app.get("/about", (req, res, next) => {
   try {
