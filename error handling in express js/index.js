@@ -1,43 +1,42 @@
-const express = require('express')
-const app = express()
-const fs = require('fs')
-const port = process.env.PORT || 3000
+const express = require("express");
+const app = express();
+const fs = require("fs");
+const errorHandler = require("./src/middleware/errorHandler");
+const port = process.env.PORT || 3000;
 
+app.get("/", (req, res, next) => {
+  // try {
+  //   res.send("HomePage")
+  // } catch (error) {
+  //   res.status(500).json({
+  //     success: false,
+  //     message: error.message || "Internal Server Error from HomePage"
+  //   })
+  // }
+  const error = new Error("Home route error");
+  next(error);
+});
 
-
-app.get('/', (req, res) => {
+app.get("/about", (req, res, next) => {
   try {
-    res.send("HomePage")
+    fs.readFileSync("./abc.txt");
+    res.send("About Page");
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message || "Internal Server Error from HomePage"
-    })
+    next(error);
   }
-})
+});
 
-
-app.get('/about', (req, res) => {
+app.get("/products", (req, res, next) => {
   try {
-    res.send("About Page")
+    res.send("Products Page");
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message || "Internal Server Error from About Page"
-    })
+    next(error);
   }
-})
+});
 
-app.get('/products', (req, res) => {
-  try {
-    res.send("Products Page")
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message || "Internal Server Error from Products Page"
-    })
-  }
-})
+// global middleware for error handling
+
+app.use(errorHandler);
 
 // Al Jarrar Mahmud
 
@@ -60,5 +59,5 @@ app.get('/products', (req, res) => {
 // app.use(errorMiddleware)
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+  console.log(`Example app listening on port ${port}`);
+});
