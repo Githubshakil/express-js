@@ -15,7 +15,9 @@ app.use(cors({
 
 //routes
 const bookRoutes = require("./src/routes/bookRoutes.js");
+const bookRoutesV1 = require("./src/routes/v1/bookRoutes.js");
 app.use("/books", bookRoutes);
+app.use("/api/v1/books", bookRoutesV1);
 
 app.get("/", (req, res) => {
   res.send("Wellcome to the Book Library API");
