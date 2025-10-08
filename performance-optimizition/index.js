@@ -3,6 +3,7 @@ const app = express()
 const morgan = require('morgan')
 const winston = require('winston')
 const NodeCache = require( "node-cache" );
+const compression = require('compression')
 
 const port = process.env.PORT || 3000
 
@@ -25,6 +26,7 @@ next()
 }
 
 app.use(morgan("dev"))
+app.use(compression())
 
 const logger = winston.createLogger({
   level: 'info',
@@ -56,6 +58,14 @@ app.get("/data",cacheMiddleware ,(req,res)=>{
 
     cache.set(req.originalUrl, userData)
     res.json(userData)
+})
+
+//large routes
+
+app.get("/large-data", (req,res)=>{
+    const myData = "This is a large dataset"
+    const largeData = {message: myData.repeat(1000)}
+    res.json(largeData)
 })
 
 app.listen(port, () => {
