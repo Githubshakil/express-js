@@ -1,17 +1,18 @@
-const CustomError = require("../utils/customError");
 
 // error middleware function
 const errorHandler = (err, req, res, next) => {
-  if (err instanceof CustomError) {
-    return res.status(err.statusCode).json({
-      success: false,
-      message: err.message,
-    });
-  }
-  res.status(500).json({
-    success: false,
-    message: err.message || "Internal Server Error from Error Handler",
-  });
-};
 
-module.exports = errorHandler;
+  const statusCode = err.statusCode || 500
+  const message = err.message || "Internal Server Error"
+  res.status(statusCode).json({
+    success: false,
+    message
+    
+  })
+  // res.status(500).json({
+  //     success: false,
+  //     message: err.message || "Internal Server Error from About Page"
+  //   })
+}
+
+module.exports = errorHandler
